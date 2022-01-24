@@ -15,6 +15,8 @@ jobs:
         - { os: windows-latest, r: 'release'}
         - { os: macOS-latest, r: 'release'}
         # - { os: macOS-latest, r: 'devel'}
+        # If changing the Ubuntu version, change all instances of 18.04, and change bionic to the new
+        # version using this reference: https://wiki.ubuntu.com/Releases
         - { os: ubuntu-18.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/bionic/latest"}
 
     env:
@@ -74,7 +76,7 @@ jobs:
         run: |
           install.packages("stringi")
           pak::local_install_dev_deps()
-          pak::pkg_install(c("rcmdcheck", "sf", "maps", "scales", "colorspace", "raster", "protolite"))
+          pak::pkg_install(c("rcmdcheck", "sf", "maps", "scales", "colorspace", "raster", "protolite", "rgeos"))
         shell: Rscript {0}
 
       - name: Session info
